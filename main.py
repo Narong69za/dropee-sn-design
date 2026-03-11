@@ -28,12 +28,21 @@ from utils.logger import log
 from utils.banner import show_banner
 
 
-def load_accounts(path="accounts/accounts.txt"):
+def load_accounts():
+
     accounts = []
 
-    try:
-        with open(path, "r") as f:
-            for line in f:
-                token = line.strip()
+    with open("accounts/accounts.txt") as f:
 
-                if token:
+        for line in f:
+
+            token = line.strip()
+
+            if not token:
+                continue
+
+            account = parse_token(token)
+
+            accounts.append(account)
+
+    return accounts
