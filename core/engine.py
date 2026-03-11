@@ -1,10 +1,12 @@
 # =====================================================
 # PROJECT : DROPEE SN DESIGN
 # MODULE  : core/engine.py
-# VERSION : 1.1.0
+# VERSION : 1.1.1
 # AUTHOR  : SN DESIGN STUDIO
 # UPDATED : 2026-03-11
 # PURPOSE : Main automation engine for Dropee bot
+# CHANGELOG:
+# 1.1.1 - Improve logging and account handling
 # =====================================================
 
 import time
@@ -24,12 +26,19 @@ class DropeeEngine:
 
         for token in self.accounts:
 
-            log(f"Processing account: {str(token)[:8]}...", "info")
-
             try:
 
+                account_preview = str(token)[:12]
+
+                log(f"Processing account: {account_preview}...", "info")
+
+                log("Running tasks...", "info")
                 run_tasks(token)
+
+                log("Executing tap action...", "info")
                 tap_action(token)
+
+                log("Collecting rewards...", "info")
                 collect_rewards(token)
 
                 time.sleep(3)
