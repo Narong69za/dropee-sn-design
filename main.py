@@ -1,33 +1,39 @@
+# ==========================================================
+# PROJECT : DROPEE SN DESIGN
+# MODULE  : main.py
+# VERSION : 1.1.0
+# AUTHOR  : SN DESIGN STUDIO
+# PURPOSE : Entry point for Dropee Automation Engine
+# PLATFORM: Termux / Linux
+#
+# DESCRIPTION
+# Main execution file responsible for:
+# - displaying system banner
+# - loading accounts
+# - initializing DropeeEngine
+# - running continuous farming cycles
+#
+# CHANGELOG
+# v1.1.0
+# - Added startup banner support (utils/banner.py)
+# - Added standardized SN DESIGN header format
+# - Improved startup logging structure
+#
+# ==========================================================
+
 import time
+
 from core.engine import DropeeEngine
 from utils.logger import log
+from utils.banner import show_banner
+
 
 def load_accounts(path="accounts/accounts.txt"):
     accounts = []
+
     try:
         with open(path, "r") as f:
             for line in f:
                 token = line.strip()
+
                 if token:
-                    accounts.append(token)
-    except FileNotFoundError:
-        log("accounts/accounts.txt not found. Please add your tokens.", "error")
-    return accounts
-
-def main():
-    log("Starting Dropee SN Design Automation Engine", "info")
-    accounts = load_accounts()
-
-    if not accounts:
-        log("No accounts loaded. Exiting.", "error")
-        return
-
-    engine = DropeeEngine(accounts)
-
-    while True:
-        engine.run_cycle()
-        log("Cycle complete. Sleeping...", "info")
-        time.sleep(60)
-
-if __name__ == "__main__":
-    main()
