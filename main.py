@@ -26,6 +26,7 @@ import time
 from core.engine import DropeeEngine
 from utils.logger import log
 from utils.banner import show_banner
+from utils.token_parser import parse_token
 
 
 def load_accounts():
@@ -46,3 +47,22 @@ def load_accounts():
             accounts.append(account)
 
     return accounts
+
+
+def main():
+
+    show_banner()
+
+    log("Loading accounts...")
+
+    accounts = load_accounts()
+
+    log(f"Loaded {len(accounts)} account(s)")
+
+    engine = DropeeEngine(accounts)
+
+    engine.run()
+
+
+if __name__ == "__main__":
+    main()
