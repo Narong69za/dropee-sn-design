@@ -1,13 +1,15 @@
-# Changelog
+# =====================================================
+# DROPEE SN DESIGN - CHANGELOG
+# =====================================================
 
-## v1.0.0
+## Version 1.1.1
+Date: 2026-03-11
 
-Initial Release
+### Updated
+- Improved engine logging visibility
+- Added dropee_api centralized endpoint handler
+- Prepared system for debugging API 404 errors
 
-Features
-
-- Auto Task Engine
-- Auto Reward System
-- Tap Automation
-- Multi Account Manager
-- Termux Compatible
+### Files Modified
+- core/engine.py
+- modules/dropee_api.py
